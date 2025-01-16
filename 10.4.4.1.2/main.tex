@@ -93,6 +93,70 @@ Thus, the roots of the equation are:
 \begin{align}
 x_1=x_2=\frac{2}{\sqrt{3}}
 \end{align}
+\textbf{ Solution using Matrix Approach by finding eigen values}\\
+\textbf{Matrix-Based Method}\\
+For a polynomial equation of the form:
+\begin{align}
+    x^n + b_{n-1}x^{n-1} + \cdots + b_2x^2 + b_1x + b_0 = 0
+\end{align}
+we construct companion matrix, which is defined as:
+\begin{align}
+    \Lambda =
+    \begin{bmatrix}
+        0 & 1 & 0 & \cdots & 0 \\
+        0 & 0 & 1 & \cdots & 0 \\
+        \vdots & \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & 0 & \cdots & 1 \\
+        -b_0 & -b_1 & -b_2 & \cdots & -b_{n-1}
+    \end{bmatrix}
+\end{align}
+
+The eigenvalues of this matrix are the roots of the given polynomial equation.
+
+For the quadratic equation \( x^2 - 4{\sqrt{3}}x + 4 = 0 \), we can write it as:
+\begin{align}
+    x^2 + (-4{\sqrt{3}})x + (4) = 0
+\end{align}
+The coefficients are:
+\begin{align*}
+    b_1 = -4{\sqrt{3}}, \quad b_0 = 4
+\end{align*}
+
+The companion matrix for this equation is:
+\begin{align}
+    \Lambda =
+    \begin{bmatrix}
+        0 & 1 \\
+        -(4) & -(-4{\sqrt{3}})
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        0 & 1 \\
+        -4 & 4{\sqrt{3}} 
+    \end{bmatrix}
+\end{align}
+The eigenvalues of \( \Lambda \) are obtained by solving:
+\begin{align}
+    \det(\Lambda - \lambda I) = 0
+\end{align}
+Substitute \( \Lambda \):
+\begin{align}
+    \begin{vmatrix}
+        0 - \lambda & 1 \\
+        -4 & 4{\sqrt{3}} - \lambda
+    \end{vmatrix}
+    = 0
+\end{align}
+Simplify the determinant,we get
+\begin{align}
+    (-\lambda)(4{\sqrt{3}} - \lambda) - (-4)(1) = 0 \\
+    \lambda^2 - {4}{\sqrt{3}}\lambda +4 = 0
+\end{align}
+
+This is the original quadratic equation, the eigen values are equal to the roots ;
+\begin{align}
+    \lambda_1 = \frac{2}{\sqrt{3}}, \quad \lambda_2 = \frac{2}{\sqrt{3}}
+\end{align}
 \textbf{Computational Solution}\\
 We use fixed point iteration method to find the roots,\\
 From the equation we can reformulate it as \\
