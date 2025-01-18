@@ -113,13 +113,13 @@ we construct companion matrix, which is defined as:
 
 The eigenvalues of this matrix are the roots of the given polynomial equation.
 
-For the quadratic equation \( x^2 - 4{\sqrt{3}}x + 4 = 0 \), we can write it as:
+For the quadratic equation \( x^2 - \frac{4}{\sqrt{3}}x + \frac{4}{3} = 0 \), we can write it as:
 \begin{align}
-    x^2 + (-4{\sqrt{3}})x + (4) = 0
+    x^2 + (-\frac{4}{\sqrt{3}})x + (\frac{4}{3}) = 0
 \end{align}
 The coefficients are:
 \begin{align*}
-    b_1 = -4{\sqrt{3}}, \quad b_0 = 4
+    b_1 = -\frac{4}{\sqrt{3}}, \quad b_0 = \frac{4}{3}
 \end{align*}
 
 The companion matrix for this equation is:
@@ -127,12 +127,12 @@ The companion matrix for this equation is:
     \Lambda =
     \begin{bmatrix}
         0 & 1 \\
-        -(4) & -(-4{\sqrt{3}})
+        -(\frac{4}{3}) & -(-\frac{4}{\sqrt{3}})
     \end{bmatrix}
     =
     \begin{bmatrix}
         0 & 1 \\
-        -4 & 4{\sqrt{3}} 
+        -\frac{4}{3} & \frac{4}{\sqrt{3}} 
     \end{bmatrix}
 \end{align}
 The eigenvalues of \( \Lambda \) are obtained by solving:
@@ -143,20 +143,85 @@ Substitute \( \Lambda \):
 \begin{align}
     \begin{vmatrix}
         0 - \lambda & 1 \\
-        -4 & 4{\sqrt{3}} - \lambda
+        -\frac{4}{3} & \frac{4}{\sqrt{3}} - \lambda
     \end{vmatrix}
     = 0
 \end{align}
 Simplify the determinant,we get
 \begin{align}
-    (-\lambda)(4{\sqrt{3}} - \lambda) - (-4)(1) = 0 \\
-    \lambda^2 - {4}{\sqrt{3}}\lambda +4 = 0
+    (-\lambda)(\frac{4}{\sqrt{3}} - \lambda) - (-\frac{4}{3})(1) = 0 \\
+    3\lambda^2 - {4}{\sqrt{3}}\lambda +4 = 0
 \end{align}
 
 This is the original quadratic equation, the eigen values are equal to the roots ;
 \begin{align}
     \lambda_1 = \frac{2}{\sqrt{3}}, \quad \lambda_2 = \frac{2}{\sqrt{3}}
 \end{align}
+\textbf{Matrix approach using QR algorithm to find the roots of quadratic equation}
+
+Consider the quadratic equation:
+\begin{align}
+    x^2 - \frac{4}{\sqrt{3}}x + \frac{4}{3} = 0
+\end{align}
+
+We have to find its roots using the QR algorithm, to find the eigenvalues of the companion matrix of the quadratic polynomial.
+
+The companion matrix \( \Lambda \) of the polynomial  $x^2 - \frac{4}{\sqrt{3}}x +\frac{4}{3} $ is given by:
+\begin{align}
+\Lambda = \begin{pmatrix} 
+0 & 1 \\
+\frac{4}{3} & \frac{-4}{\sqrt{3}}
+\end{pmatrix}
+= \begin{pmatrix}
+0 & 1 \\
+\frac{4}{3} & -\frac{4}{\sqrt{3}}
+\end{pmatrix}
+\end{align}
+
+This matrix represents the system that corresponds to the given polynomial.
+
+The QR algorithm starts by performing QR decomposition on the matrix \( \Lambda \). The goal is to decompose \( \Lambda \) into an orthogonal matrix \( Q \) and an upper triangular matrix \( R \), such that:
+\begin{align}
+    \Lambda = QR
+\end{align}
+
+Here \( Q^T Q = I \), and \( R \) is upper triangular. Then, we form a new matrix \( \Lambda' \) as:
+\begin{align}
+    \Lambda' = RQ
+\end{align}
+
+This process is repeated iteratively until \( \Lambda' \) converges to an upper triangular matrix whose diagonal elements are the eigenvalues of \( \Lambda \), which are equaal to the roots of the quadratic equation.
+
+Outlining the iterative steps for the QR algorithm to be applied to this companion matrix.
+
+First Iteration,\\
+We start with \( \Lambda_0 = \begin{pmatrix} 0 & 1 \\ \frac{4}{3} & -\frac{4}{\sqrt{3}} \end{pmatrix} \).
+Perform the QR decomposition of \( \Lambda_0 \):
+\begin{align}
+    \Lambda_0 = QR
+\end{align}
+Let's calculate \( Q \) and \( R \), then form \( \Lambda_1 = RQ \).
+
+Subsequent Iterations,\\
+Perform the QR decomposition on the new matrix \( \Lambda_1 \), then calculate \( \Lambda_2 = RQ \), and repeat this process until the matrix \( \Lambda_k \) converges to an upper triangular form. The diagonal elements of this matrix represent the eigenvalues of \( \Lambda_0 \), which correspond to the roots of the quadratic equation.
+
+Through sufficient iterations, the QR algorithm will produce an upper triangular matrix, with its diagonal entries representing the eigenvalues. These eigenvalues are the roots of the polynomial. Specifically, for the companion matrix \( \Lambda \), the eigenvalues will provide the roots of the quadratic equation \( 3x^2 - 4\sqrt{3}x + 4 = 0 \).
+
+
+Thus, the eigenvalues (roots) are the solutions to the quadratic equation:
+\begin{align}    
+x = \frac{4{\sqrt{3}} \pm \sqrt{{(4{\sqrt{3}}})^2 - 4(3)(4)}}{2(3)} = \frac{4{\sqrt{3}} \pm \sqrt{0}}{6} = \frac{2}{\sqrt{3}}
+\end{align}
+
+\begin{align}
+x_1=x_2 = \frac{2}{\sqrt{3}}
+\end{align}
+
+Hence, the roots are:
+\begin{align}
+    x_1 = \frac{2}{\sqrt{3}}, \quad x_2 = \frac{2}{\sqrt{3}}
+\end{align}
+
 \textbf{Computational Solution}\\
 We use fixed point iteration method to find the roots,\\
 From the equation we can reformulate it as \\
