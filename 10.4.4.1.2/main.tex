@@ -226,12 +226,15 @@ Hence, the roots are:
 We use fixed point iteration method to find the roots,\\
 From the equation we can reformulate it as \\
 \begin{align}
-    g(x)=\frac{\sqrt{4{\sqrt{3}}x-4}}{\sqrt{3}}
+    g(x)=\frac{3x^2+4}{4{\sqrt{3}}}
 \end{align}
 Now let us assume the initial guess of x as $x_0=2$
 Use the iterative formula,
 \begin{align}
     x_{n+1}=g(x_n)
+\end{align}
+\begin{align}
+        x_{n+1}=\frac{3{x_n}^2+4}{4{\sqrt{3}}}
 \end{align}
  Repeat the iterations until the sequence ${x_{n+1}}$ converges to a fixed point.
  Convergence is often checked using
