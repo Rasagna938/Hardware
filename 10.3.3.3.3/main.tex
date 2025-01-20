@@ -116,6 +116,17 @@ Now,Substitute \(y = 50\) into equation \brak{0.5};
 \end{align}
 \textbf{Computational Solution}
 \section*{LU Factorization Solution}
+Given a matrix $A$ of size $n \times n$, LU decomposition is performed row by row and column by column. The update equations are as follows:
+We Start by initializing $L$ as the identity matrix $L = I$ and $U$ as a copy of $A$.
+For each column $j \geq k$, the entries of $U$ in the $k$-th row are updated as:
+\begin{align}
+U_{k,j} = A_{k,j} - \sum_{m=1}^{k-1} L_{k,m} \cdot U_{m,j}, \quad \forall \, j \geq k 
+\end{align}
+For each row $i > k$, the entries of $L$ in the $k$-th column are updated as:
+\begin{align}
+L_{i,k} = \frac{1}{U_{k,k}} \left( A_{i,k} - \sum_{m=1}^{k-1} L_{i,m} \cdot U_{m,k} \right), \quad \forall \, i > k 
+\end{align}
+
 We are solving the following system of linear equations:
 \begin{align}
 7x + 6y = 3800
