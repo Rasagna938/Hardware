@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.8.7)  15 FEB 2025 14:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.8.7)  15 FEB 2025 14:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1928,21 +1928,21 @@ File: lstlang1.sty 2023/02/27 1.9 listings language file
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
 )
 LaTeX Font Info:    Trying to load font information for OMS+txr on input line 1
-17.
+19.
 
 (/usr/share/texlive/texmf-dist/tex/latex/txfonts/omstxr.fd
 File: omstxr.fd 2000/12/15 v3.1
 )
 LaTeX Font Info:    Font shape `OMS/txr/m/n' in size <10> not available
-(Font)              Font shape `OMS/txsy/m/n' tried instead on input line 117.
+(Font)              Font shape `OMS/txsy/m/n' tried instead on input line 119.
 LaTeX Font Info:    Trying to load font information for OML+txr on input line 1
-23.
+25.
 
 (/usr/share/texlive/texmf-dist/tex/latex/txfonts/omltxr.fd
 File: omltxr.fd 2000/12/15 v3.1
 )
 LaTeX Font Info:    Font shape `OML/txr/m/n' in size <10> not available
-(Font)              Font shape `OML/txmi/m/it' tried instead on input line 123.
+(Font)              Font shape `OML/txmi/m/it' tried instead on input line 125.
 
  [2]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1960,9 +1960,9 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 8113A00982E86EEC9C096D4E333C7166;1169.
  ) 
 Here is how much of TeX's memory you used:
- 53631 strings out of 474222
- 1262336 string characters out of 5748734
- 2300946 words of memory out of 5000000
+ 53638 strings out of 474222
+ 1262448 string characters out of 5748734
+ 2293946 words of memory out of 5000000
  74916 multiletter control sequences out of 15000+600000
  624227 words of font info for 173 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
@@ -1976,10 +1976,10 @@ ts/rtxsc.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsy.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (5 pages, 769354 bytes).
+Output written on main.pdf (5 pages, 770057 bytes).
 PDF statistics:
- 306 PDF objects out of 1000 (max. 8388607)
- 258 compressed objects within 3 object streams
- 144 named destinations out of 1000 (max. 500000)
+ 316 PDF objects out of 1000 (max. 8388607)
+ 268 compressed objects within 3 object streams
+ 151 named destinations out of 1000 (max. 500000)
  186 words of extra memory for PDF output out of 10000 (max. 10000000)
 

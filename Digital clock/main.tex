@@ -108,6 +108,8 @@ The dot pins are grounded.\\
 The following code is used to program the Arduino for controlling the digital clock. It handles multiplexing of six seven-segment displays, updates the time, and manages display refreshing.\\
 
 \begin{lstlisting}[language=C++]
+
+
 #include "Arduino.h"
 
 #define PINS_COUNT 6 // Number of common anode control pins (for each display)
@@ -220,11 +222,17 @@ for(int i=0;i<82;i++){
 	    h2=0;
 	    h1++;
     }
-    if(h1>=2){
+    if(h1>=3){
 	    h1=0;
     }
+    if (h1 == 2 && h2 == 4) {  
+    h1 = 0;
+    h2 = 0;
+}
+
 }while(s2>=0);
 }
+
 \end{lstlisting}
 
 \section{Precautions}
