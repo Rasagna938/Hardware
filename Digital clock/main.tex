@@ -93,7 +93,7 @@ The pin between a and f is COM(Common pin) of first display is connected to pin 
 The must be a resistor of \SI{220}{\ohm} between the COM pin and arduino pins to avoid high voltage which may  burn out the segments, making them dim permanently or stop working entirely.\\
 The dot pins are grounded.\\
 
-\section{Working Principle}
+\section{Working Principle-Software Implementation}
 
 \subsection{Multiplexing}
 \begin{enumerate}
@@ -104,133 +104,193 @@ The dot pins are grounded.\\
     \item The Arduino rapidly cycles through each display thousands of times per second, making it appear that all are ON at the same time.
 \end{enumerate}
 
-\subsection{Software implementation}
+\subsection{Buttons Functionality}
+\begin{enumerate}
+    \item Initially we connect jumper wires to the analog pins (A1, A2, and A3).
+    \item A1 controls the hour's units place (h2), A2 controls the minute's units place (m2), and A3 controls the second's units place (s2).
+    \item We use a method called state change detection to capture when the jumper wire is connected (from HIGH to LOW) to increment the respective value (h2, m2, or s2).
+    \item When the jumper wire is tapped on A1 (for example), the program checks if the current value of h2 (the hour's units place) is less than 9. If it is, the value increments by one.
+    \item Similarly, tapping A2 increments the minutes' units place (m2), and A3 increments the seconds' units place (s2).
+\end{enumerate}
+
+\subsection{Debouncing}
+\begin{enumerate}
+    \item Mechanical buttons often generate noisy signals, causing bouncing, where the button state might change rapidly due to physical contact. This can cause multiple increments instead of just one.
+    \item To prevent this, a debounce delay is added, which ensures that only one increment happens for each button press (or jumper wire tap).
+    \item After detecting a state change, the program waits for a short period (e.g., 300 ms) before checking the button state again.
+    \item This debounce delay helps ignore any unintended multiple presses from the same action.
+\end{enumerate}
+
+\newpage
 The following code is used to program the Arduino for controlling the digital clock. It handles multiplexing of six seven-segment displays, updates the time, and manages display refreshing.\\
-
+\subsection{CPP Code}
 \begin{lstlisting}[language=C++]
-
 
 #include "Arduino.h"
 
-#define PINS_COUNT 6 // Number of common anode control pins (for each display)
-#define NO_SEGMENTS 7 // Number of segments per display (a to g)
+#define PINS_COUNT 6 // Number of displays
+#define NO_SEGMENTS 7 // Number of segments per display
 
-// Defining control pins for each seven-segment display
 int pins[PINS_COUNT] = {9, 10, 11, 12, 13, A0};
+int segPins[NO_SEGMENTS] = {2, 3, 4, 5, 6, 7, 8};
 
-// Defining segment control pins (a to g)
-int segPins[NO_SEGMENTS]={2,3,4,5,6,7,8};
+unsigned long previousMillis = 0;
+const int interval = 2;  // 2 ms per digit
+int currentDisplay = 0; // Keeps track of which display is active
+
+int h1 = 0, h2 = 0, m1 = 0, m2 = 0, s1 = 0, s2 = -1;
+
+#define HOUR_PIN A1   // Hour increment
+#define MINUTE_PIN A2 // Minute increment
+#define SECOND_PIN A3 // Seconds increment 
+
+bool lastHourState = HIGH;
+bool lastMinuteState = HIGH;
+bool lastSecondState = HIGH;
 
 void setup() {
-	 for (int i = 0; i < 7; i++) {
+  for (int i = 0; i < NO_SEGMENTS; i++) {
     pinMode(segPins[i], OUTPUT);
   }
+  for (int i = 0; i < PINS_COUNT; i++) {
+    pinMode(pins[i], OUTPUT);
+  }
+  pinMode(HOUR_PIN, INPUT_PULLUP);   // Hour increment
+  pinMode(MINUTE_PIN, INPUT_PULLUP); // Minute increment
+  pinMode(SECOND_PIN, INPUT_PULLUP); //Second increment
+}
 
-    for (int i = 0; i < PINS_COUNT; i++) {
-        pinMode(pins[i], OUTPUT);
-    }
+void sevenseg(int a, int b, int c, int d, int e, int f, int g) {
+  digitalWrite(2, a);
+  digitalWrite(3, b);
+  digitalWrite(4, c);
+  digitalWrite(5, d);
+  digitalWrite(6, e);
+  digitalWrite(7, f);
+  digitalWrite(8, g);
 }
-void sevenseg(int a,int b, int c ,int d,int e ,int f,int g)
-{
-	digitalWrite(2,a);
-	digitalWrite(3,b);
-	digitalWrite(4,c);
-	digitalWrite(5,d);
-	digitalWrite(6,e);
-	digitalWrite(7,f);
-	digitalWrite(8,g);
-}
-// Function to display a digit (0-9) on the seven-segment display
 
 void displayDigit(int digit) {
-	switch(digit){
-		case 0:sevenseg(0, 0, 0, 0, 0, 0, 1);break;
-		case 1:sevenseg(1, 0, 0, 1, 1, 1, 1);break;
-		case 2:sevenseg(0, 0, 1, 0, 0, 1, 0);break;
-		case 3:sevenseg(0, 0, 0, 0, 1, 1, 0);break;
-		case 4:sevenseg(1, 0, 0, 1, 1, 0, 0);break;
-		case 5:sevenseg(0, 1, 0, 0, 1, 0, 0);break;
-		case 6:sevenseg(0, 1, 0, 0, 0, 0, 0);break;
-		case 7:sevenseg(0, 0, 0, 1, 1, 1, 1);break;
-		case 8:sevenseg(0, 0, 0, 0, 0, 0, 0);break;
-		case 9:sevenseg(0, 0, 0, 0, 1, 0, 0);break;		
+  switch (digit) {
+    case 0: sevenseg(0, 0, 0, 0, 0, 0, 1); break;
+    case 1: sevenseg(1, 0, 0, 1, 1, 1, 1); break;
+    case 2: sevenseg(0, 0, 1, 0, 0, 1, 0); break;
+    case 3: sevenseg(0, 0, 0, 0, 1, 1, 0); break;
+    case 4: sevenseg(1, 0, 0, 1, 1, 0, 0); break;
+    case 5: sevenseg(0, 1, 0, 0, 1, 0, 0); break;
+    case 6: sevenseg(0, 1, 0, 0, 0, 0, 0); break;
+    case 7: sevenseg(0, 0, 0, 1, 1, 1, 1); break;
+    case 8: sevenseg(0, 0, 0, 0, 0, 0, 0); break;
+    case 9: sevenseg(0, 0, 0, 0, 1, 0, 0); break;
+  }
 }
-}
+
 void loop() {
-    //Extracting individual digits for each display
-    int h1 = 0;  // Tens place of hours
-    int h2 = 0;  // Units place of hours
-    int m1 = 0;  // Tens place of minutes
-    int m2 = 0;  // Units place of minutes
-    int s1 = 0;  // Tens place of seconds
-    int s2 = -1;  // Units place of seconds
-do{
-//Loop to display time for 24 hours
-for(int i=0;i<82;i++){
+  unsigned long currentMillis = millis();
 
-    // Multiplexing for six displays
-    digitalWrite(pins[0], HIGH);
-    displayDigit(h1);
-    delay(2);
+  if (currentMillis - previousMillis >= interval) {
+    previousMillis = currentMillis; // Reset timer
     
-    digitalWrite(pins[0], LOW);
-    digitalWrite(pins[1], HIGH);
-    displayDigit(h2);
-    delay(2);
+    for (int i = 0; i < PINS_COUNT; i++) {
+      digitalWrite(pins[i], LOW);
+    }
+
+    digitalWrite(pins[currentDisplay], HIGH);
+
+    // Display the digit on the active display
+    switch (currentDisplay) {
+      case 0: displayDigit(h1); break;
+      case 1: displayDigit(h2); break;
+      case 2: displayDigit(m1); break;
+      case 3: displayDigit(m2); break;
+      case 4: displayDigit(s1); break;
+      case 5: displayDigit(s2); break;
+    }
+
+    // Move to the next display
+    currentDisplay++;
+    if (currentDisplay >= PINS_COUNT) {
+      currentDisplay = 0;
+    }
+  }
+
+  // Update time every second
+  static unsigned long lastSecond = 0;
+  if (currentMillis - lastSecond >= 1000) {
+    lastSecond = currentMillis; // Reset second timer
     
-    digitalWrite(pins[1], LOW);
-    digitalWrite(pins[2], HIGH);
-    displayDigit(m1);
-    delay(2);
-    
-    digitalWrite(pins[2], LOW);
-    digitalWrite(pins[3], HIGH);
-    displayDigit(m2);
-    delay(2);
-    
-    digitalWrite(pins[3], LOW);
-    digitalWrite(pins[4], HIGH);
-    displayDigit(s1);
-    delay(2);
-    
-    digitalWrite(pins[4], LOW);
-    digitalWrite(pins[5], HIGH);
-    displayDigit(s2);
-    delay(2);
-    
-    digitalWrite(pins[5], LOW);
-}
-//Modifying Display after each second.
     s2++;
-    if(s2>=10){
-	    s2=0;
-	    s1++;
+    if (s2 >= 10) {
+      s2 = 0;
+      s1++;
     }
-    if(s1>=6){
-	    s1=0;
-	    m2++;
+    if (s1 >= 6) {
+      s1 = 0;
+      m2++;
     }
-    if(m2>=10){
-	    m2=0;
-	    m1++;
+    if (m2 >= 10) {
+      m2 = 0;
+      m1++;
     }
-    if(m1>=6){
-	    m1=0;
-	    h2++;
+    if (m1 >= 6) {
+      m1 = 0;
+      h2++;
     }
-    if(h2>=10){
-	    h2=0;
-	    h1++;
+    if (h2 >= 10) {
+      h2 = 0;
+      h1++;
     }
-    if(h1>=3){
-	    h1=0;
+    if (h1 >= 2) {
+      h1 = 0;
     }
-    if (h1 == 2 && h2 == 4) {  
-    h1 = 0;
-    h2 = 0;
-}
+  }
 
-}while(s2>=0);
+  // Manual Time Adjustment Using Jumper Wires
+  // Hour increment
+  bool currentHourState = digitalRead(HOUR_PIN);
+  if (currentHourState == LOW && lastHourState == HIGH) {
+    h2++; // Increment units place of hours
+    if (h2 >= 10) {
+      h2 = 0;
+      h1++; // Increment tens place of hours
+    }
+    if (h1 >= 2 && h2 >= 4) { // Hour reset after 23
+      h1 = 0;
+      h2 = 0;
+    }
+    delay(300); // Debounce delay
+  }
+  lastHourState = currentHourState;
+
+  // Minute increment
+  bool currentMinuteState = digitalRead(MINUTE_PIN);
+  if (currentMinuteState == LOW && lastMinuteState == HIGH) {
+    m2++; // Increment units place of minutes
+    if (m2 >= 10) {
+      m2 = 0;
+      m1++; // Increment tens place of minutes
+    }
+    if (m1 >= 6) { // Reset after 59 minutes
+      m1 = 0;
+    }
+    delay(300); // Debounce delay
+  }
+  lastMinuteState = currentMinuteState;
+
+  // Second increment
+  bool currentSecondState = digitalRead(SECOND_PIN);
+  if (currentSecondState == LOW && lastSecondState == HIGH) {
+    s2++; // Increment units place of seconds
+    if (s2 >= 10) {
+      s2 = 0;
+      s1++; // Increment tens place of seconds
+    }
+    if (s1 >= 6) { // Reset after 59 seconds
+      s1 = 0;
+    }
+    delay(300); // Debounce delay
+  }
+  lastSecondState = currentSecondState;
 }
 
 \end{lstlisting}

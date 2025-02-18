@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.8.7)  15 FEB 2025 14:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.8.7)  18 FEB 2025 15:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1900,7 +1900,7 @@ LaTeX Font Info:    Trying to load font information for TS1+txr on input line 7
 (/usr/share/texlive/texmf-dist/tex/latex/txfonts/ts1txr.fd
 File: ts1txr.fd 2000/12/15 v3.1
 )
-<Connections/Connections.png, id=67, 1619.04875pt x 683.55376pt>
+<Connections/Connections.png, id=75, 1619.04875pt x 683.55376pt>
 File: Connections/Connections.png Graphic file (type png)
 <use Connections/Connections.png>
 Package pdftex.def Info: Connections/Connections.png  used on input line 88.
@@ -1913,8 +1913,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 91--95
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
 dist/fonts/enc/dvips/base/8r.enc}
 
- <./Connections/Connections.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 108--109
+ <./Connections/Connections.png>] [2]
+Underfull \hbox (badness 10000) in paragraph at lines 125--126
 
  []
 
@@ -1928,58 +1928,57 @@ File: lstlang1.sty 2023/02/27 1.9 listings language file
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
 )
 LaTeX Font Info:    Trying to load font information for OMS+txr on input line 1
-19.
+34.
 
 (/usr/share/texlive/texmf-dist/tex/latex/txfonts/omstxr.fd
 File: omstxr.fd 2000/12/15 v3.1
 )
 LaTeX Font Info:    Font shape `OMS/txr/m/n' in size <10> not available
-(Font)              Font shape `OMS/txsy/m/n' tried instead on input line 119.
+(Font)              Font shape `OMS/txsy/m/n' tried instead on input line 134.
 LaTeX Font Info:    Trying to load font information for OML+txr on input line 1
-25.
+52.
 
 (/usr/share/texlive/texmf-dist/tex/latex/txfonts/omltxr.fd
 File: omltxr.fd 2000/12/15 v3.1
 )
 LaTeX Font Info:    Font shape `OML/txr/m/n' in size <10> not available
-(Font)              Font shape `OML/txmi/m/it' tried instead on input line 125.
-
- [2]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+(Font)              Font shape `OML/txmi/m/it' tried instead on input line 152.
 
  [3]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [4]
-[5] (./main.aux)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [5]
+[6] [7] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2020/03/25>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 8113A00982E86EEC9C096D4E333C7166;1169.
+(rerunfilecheck)             Checksum: 5951E4D1A3C33295AFC62B119BA4CBA9;1491.
  ) 
 Here is how much of TeX's memory you used:
- 53638 strings out of 474222
- 1262448 string characters out of 5748734
- 2293946 words of memory out of 5000000
- 74916 multiletter control sequences out of 15000+600000
- 624227 words of font info for 173 fonts, out of 8000000 for 9000
+ 53736 strings out of 474222
+ 1263916 string characters out of 5748734
+ 2272678 words of memory out of 5000000
+ 74960 multiletter control sequences out of 15000+600000
+ 623517 words of font info for 171 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 109i,10n,109p,1194b,2536s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/rtcxi.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/txfonts/rtcxr.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/txfonts/rtxi.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/txfonts/rtxmi.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/txfonts/rtxr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfon
-ts/rtxsc.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsy.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (5 pages, 770057 bytes).
+ 109i,10n,109p,1194b,2534s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/rtcxr.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/txfonts/rtxi.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/txfonts/rtxmi.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/txfonts/rtxr.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/txfonts/rtxsc.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfon
+ts/txsy.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (7 pages, 774996 bytes).
 PDF statistics:
- 316 PDF objects out of 1000 (max. 8388607)
- 268 compressed objects within 3 object streams
- 151 named destinations out of 1000 (max. 500000)
- 186 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 392 PDF objects out of 1000 (max. 8388607)
+ 343 compressed objects within 4 object streams
+ 207 named destinations out of 1000 (max. 500000)
+ 202 words of extra memory for PDF output out of 10000 (max. 10000000)
 
