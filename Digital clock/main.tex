@@ -240,8 +240,12 @@ void loop() {
       h2 = 0;
       h1++;
     }
-    if (h1 >= 2) {
+    if (h1 >= 3) {
       h1 = 0;
+    }
+    if(h1==2 && h2==4){
+	    h1=0;
+	    h2=0;
     }
   }
 
@@ -254,7 +258,7 @@ void loop() {
       h2 = 0;
       h1++; // Increment tens place of hours
     }
-    if (h1 >= 2 && h2 >= 4) { // Hour reset after 23
+    if (h1 == 2 && h2 == 4) { // Hour reset after 23
       h1 = 0;
       h2 = 0;
     }
@@ -292,6 +296,8 @@ void loop() {
   }
   lastSecondState = currentSecondState;
 }
+
+
 
 \end{lstlisting}
 

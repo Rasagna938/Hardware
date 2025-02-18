@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.8.7)  18 FEB 2025 15:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.8.7)  18 FEB 2025 16:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1951,7 +1951,10 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5]
-[6] [7] (./main.aux)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6]
+[7] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2020/03/25>
@@ -1960,8 +1963,8 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 5951E4D1A3C33295AFC62B119BA4CBA9;1491.
  ) 
 Here is how much of TeX's memory you used:
- 53736 strings out of 474222
- 1263916 string characters out of 5748734
+ 53740 strings out of 474222
+ 1263980 string characters out of 5748734
  2272678 words of memory out of 5000000
  74960 multiletter control sequences out of 15000+600000
  623517 words of font info for 171 fonts, out of 8000000 for 9000
@@ -1975,10 +1978,10 @@ ublic/txfonts/rtxsc.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfon
 ts/txsy.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (7 pages, 774996 bytes).
+Output written on main.pdf (7 pages, 775052 bytes).
 PDF statistics:
- 392 PDF objects out of 1000 (max. 8388607)
- 343 compressed objects within 4 object streams
- 207 named destinations out of 1000 (max. 500000)
+ 397 PDF objects out of 1000 (max. 8388607)
+ 348 compressed objects within 4 object streams
+ 211 named destinations out of 1000 (max. 500000)
  202 words of extra memory for PDF output out of 10000 (max. 10000000)
 
